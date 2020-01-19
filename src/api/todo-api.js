@@ -1,5 +1,23 @@
 import axios from 'axios';
 import store from '../store';
+
+const instance = axios.create({
+  withCredentials: true,
+  baseURL: 'https://test.megapolis-it.ru/api/',
+  headers:     {
+    "API-KEY": "b1775b2f-c3a5-4509-8dc9-90b5629de7c3"
+  }
+});
+
+export const todosAPI = {
+  getTodos() {
+    return instance.get(`list`)
+  },
+  createTodo(todoTitle) {
+    instance.post(`list`)
+  }
+}
+
 import {
   createTodoSuccess,
   deleteTodoSuccess,
@@ -26,6 +44,16 @@ export function getTodos() {
     console.log(response.data)
     store.dispatch(getTodosSuccess(response.data));
     return response;
+  });
+}
+
+export function getTodo(id) {
+  return axios.get('https://test.megapolis-it.ru/api/list')
+  .then(response => {
+    let data = response.data.data.filter(el => el.id === id)
+    store.dispatch(getTodosSuccess(data));
+    console.log(data)
+    return data;
   });
 }
 

@@ -2,6 +2,10 @@ import React from 'react';
 import * as todoApi from './api/todo-api';
 
 function App() {
+
+
+
+
   async function f() {
     await todoApi.getTodos();
     // todoApi.deleteTodo(633);
@@ -13,7 +17,8 @@ function App() {
   f();
 
   return (
-    <div className="App">
+    
+    {/*<div className="App">
       <div className="container">
         <header>
           Список задач
@@ -51,7 +56,7 @@ function App() {
         </div>
         <footer>© 2019</footer>
       </div>
-    </div>
+    </div>*/}
   );
 }
 
