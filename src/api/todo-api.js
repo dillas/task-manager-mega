@@ -1,31 +1,25 @@
 import axios from 'axios';
-import store from '../store';
 
 const instance = axios.create({
-  withCredentials: true,
-  baseURL: 'https://test.megapolis-it.ru/api/',
-  headers:     {
-    "API-KEY": "b1775b2f-c3a5-4509-8dc9-90b5629de7c3"
-  }
+  baseURL: 'https://test.megapolis-it.ru/api/'
 });
 
-export const todosAPI = {
-  getTodos() {
+export const todoAPI = {
+  getAll() {
     return instance.get(`list`)
   },
-  createTodo(todoTitle) {
-    instance.post(`list`)
+  create(title) {
+    return instance.post(`list`, { title })
+  },
+  update(id, title){
+    return instance.post(`list/${id}`, { title })
+  },
+  delete(id) {
+    return instance.delete(`list/${id}`)
   }
 }
 
-import {
-  createTodoSuccess,
-  deleteTodoSuccess,
-  getTodosSuccess,
-  getTodoSuccess,
-  updateTodoSuccess
-} from '../actions/todo-actions'
-
+/*
 export function createTodo(todoTitle) {
   return axios.post('https://test.megapolis-it.ru/api/list', {
     title: todoTitle
@@ -74,4 +68,4 @@ export function deleteTodo(todoId) {
     // store.dispatch(deleteUserSuccess(todoId));
     return response;
   });
-}
+}*/

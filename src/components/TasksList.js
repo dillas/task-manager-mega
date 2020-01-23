@@ -1,16 +1,7 @@
 import React from 'react'
 import Task from './Task'
 
-export const tasks = [
-  {id: 1, text: 'qwerty 1'},
-  {id: 2, text: 'qwerty 2'},
-  {id: 3, text: 'qwerty 3'},
-  {id: 4, text: 'qwerty 4'},
-  {id: 5, text: 'qwerty 5'},
-  {id: 6, text: 'qwerty 6'},
-]
-
-const TasksList = () => {
+const TasksList = ({tasks, getTask, createTask}) => {
   return (
     <>
       <header className="header">
@@ -18,8 +9,10 @@ const TasksList = () => {
         <div className="header__button"><button>Добавить</button></div>
       </header>
       <ul>
-        {tasks.map(task => <Task key={task.id} id={task.id} text={task.text} />)}
+        {tasks && tasks.map(task => <Task key={task.id} id={task.id} text={task.title} />)}
       </ul>
+      <button onClick={() => { getTask() }}>getTask</button>
+      <button onClick={() => { createTask() }}>createTask</button>
     </>
   )
 }

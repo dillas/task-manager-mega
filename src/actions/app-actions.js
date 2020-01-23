@@ -6,10 +6,9 @@ export function createTodoSuccess() {
   };
 }
 
-export function getTodosSuccess(todos) {
+export function getTodosSuccess() {
   return {
-    type: types.GET_TODOS_SUCCESS,
-    todos
+    type: types.GET_TODOS_SUCCESS
   };
 }
 

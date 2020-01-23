@@ -1,13 +1,12 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
+import testReducer from './test-reducer'
+import taskReducer from './task-reducer'
+// import appReducer from './app-reducer'
 
-// Reducers
-import userReducer from './user-reducer';
-import todoReducer from './todo-reducer';
+const reducers = combineReducers({
+  testStore: testReducer,
+  tasksStore: taskReducer,
+  // app: appReducer
+})
 
-// Combine Reducers
-var reducers = combineReducers({
-  userState: userReducer,
-  todoState: todoReducer
-});
-
-export default reducers;
+export default reducers

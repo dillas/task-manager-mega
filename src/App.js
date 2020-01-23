@@ -1,63 +1,25 @@
-import React from 'react';
-import * as todoApi from './api/todo-api';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-function App() {
+import MainPage from './components/MainPage'
+import TasksListContainer from './components/TasksListContainer'
 
-
-
-
-  async function f() {
-    await todoApi.getTodos();
-    // todoApi.deleteTodo(633);
-    await todoApi.createTodo('qwerty');
-    // todoApi.updateTodo(630 ,'ytrewq1');
-    await todoApi.getTodos();
-  }
-
-  f();
-
+const App = () => {
   return (
-    
-    {/*<div className="App">
-      <div className="container">
-        <header>
-          Список задач
-          <button>Добавить</button>
-        </header>
-        <div className="main">
-          <table>
-            <tbody>
-              <tr>
-                <td>617</td>
-                <td>111</td>
-                <td>
-                  <button>|</button>
-                  <button>Х</button>
-                </td>
-              </tr>
-              <tr>
-                <td>620</td>
-                <td>222</td>
-                <td>
-                  <button>|</button>
-                  <button>Х</button>
-                </td>
-              </tr>
-              <tr>
-                <td>624</td>
-                <td>333</td>
-                <td>
-                  <button>|</button>
-                  <button>Х</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <footer>© 2019</footer>
-      </div>
-    </div>*/}
-  );
+    <div className="container">
+      <main className="content">
+        <Router>
+          <Switch>
+            <Route exact path='/'><MainPage/></Route>
+            <Route exact path='/items'><TasksListContainer/></Route>
+          </Switch>
+        </Router>
+      </main>
+      <footer className="footer">
+        <p className="footer__copyright">© 2019</p>
+      </footer>
+    </div>
+  )
 }
 
-export default App;
+export default App
