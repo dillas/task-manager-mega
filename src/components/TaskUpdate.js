@@ -1,11 +1,15 @@
 import React from 'react'
-import { useHistory, useParams } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import {
+  changeUpdateTaskField,
+  updateTask,
+} from '../actions/task-actions'
 
-const TaskUpdate = () => {
+const TaskUpdate = ({deleteTask, changeName, editableTask, updateTask}) => {
 
-  const {id} = useParams()
-
-  let history = useHistory();
+  let history = useHistory()
   function handleClick() {
     history.goBack();
   }
@@ -13,14 +17,29 @@ const TaskUpdate = () => {
   return (
     <>
       <header className="header">
-        <div className="header__title">Задача № {id}</div>
-        <div className="header__button"><button>Удалить</button></div>
+        <div className="header__title">Задача № {editableTask.id}</div>
+        <div className="header__button"><Link to='/items'><button onClick={() => deleteTask(editableTask.id)}>Удалить</button></Link></div>
       </header>
-      Краткое описание ===== task.title}
-      <input type="text"/>
+      <input type="text" onChange={(e) =>changeName(e.target.value)} value={editableTask.name}/>
       <button type="button" onClick={handleClick}>Вернуться к списку</button>
+      <button type="button" onClick={() => updateTask(editableTask.id, editableTask.name)}>Создать</button>
     </>
   )
 }
 
-export default TaskUpdate
+
+const mapStateToProps = (state) => {
+  return {
+    modalIsOpen: state.appStore.modalIsOpen,
+    editableTask: state.tasksStore.editableTask
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeName: bindActionCreators(changeUpdateTaskField, dispatch),
+    updateTask: bindActionCreators(updateTask, dispatch),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskUpdate)

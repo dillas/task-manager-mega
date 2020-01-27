@@ -1,18 +1,15 @@
 import * as types from '../actions/action-types'
 
 const initialState = {
-  app: []
+  modalIsOpen: false
 };
 
 const appReducer = function(state = initialState, action) {
 
   // eslint-disable-next-line
   switch(action.type) {
-    case types.CREATE_TASK:
-      return Object.assign({}, state, { tasks: action.tasks });
-
-    case types.CHANGE_SECOND_NAME:
-      return Object.assign({}, state, { tasks: action.tasks });
+    case types.MODAL_IS_OPEN:
+      return { ...state, modalIsOpen: !state.modalIsOpen }
 
     default:
       return state

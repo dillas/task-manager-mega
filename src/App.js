@@ -5,13 +5,15 @@ import MainPage from './components/MainPage'
 import TasksListContainer from './components/TasksListContainer'
 
 const App = () => {
+
+
   return (
     <div className="container">
       <main className="content">
         <Router>
           <Switch>
             <Route exact path='/'><MainPage/></Route>
-            <Route exact path='/items'><TasksListContainer/></Route>
+            <TasksListContainer/>
           </Switch>
         </Router>
       </main>
